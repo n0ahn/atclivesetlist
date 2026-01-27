@@ -1,106 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATC Live Setlist</title>
   <style>
-    /* Catppuccin Mocha Palette */
+    /* RoosterPunt Kleurenpalet */
     :root {
-      --base: #1e1e2e;
-      --mantle: #181825;
-      --crust: #11111b;
-      --text: #cdd6f4;
-      --subtext: #a6adc8;
-      --overlay: #9399b2;
-      --surface0: #313244;
-      --surface1: #45475a;
-      --surface2: #585b70;
-      --blue: #89b4fa;
-      --lavender: #b4befe;
-      --mauve: #cba6f7;
-      --pink: #f5c2e7;
-      --maroon: #eba0ac;
-      --red: #f38ba8;
-      --peach: #fab387;
-      --yellow: #f9e2af;
-      --green: #a6e3a1;
-      --teal: #94e2d5;
-      --sky: #89dceb;
-      --sapphire: #74c7ec;
+      --bg: #0F101A;
+      --dark-bg: #090A0F;
+      --primary: #5AA2DC;
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.05);
+      --card-bg: rgba(9, 10, 15, 0.7);
     }
 
     body {
       margin: 0;
-      font-family: "Inter", Arial, sans-serif;
-      background-color: var(--base);
-      background-image: url('wall.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      /* Subtiele gradient achtergrond zoals op de site */
+      background-image: 
+        radial-gradient(circle at 50% -20%, rgba(90, 162, 220, 0.15), transparent),
+        radial-gradient(circle at 0% 100%, rgba(90, 162, 220, 0.05), transparent);
+      background-attachment: fixed;
       color: var(--text);
+      line-height: 1.5;
     }
 
     nav {
       width: 100%;
       display: flex;
       align-items: center;
-      padding: 18px 34px;
-      background: rgba(24, 24, 37, 0.75);
-      backdrop-filter: none;
-      border-bottom: 1px solid var(--surface1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      padding: 1rem 2rem;
+      background: rgba(15, 16, 26, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+      box-sizing: border-box;
     }
 
     nav img.logo {
-      height: 45px;
-      margin-right: 18px;
+      height: 40px;
+      margin-right: 15px;
     }
 
     nav h1 {
-      font-size: 26px;
+      font-size: 1.5rem;
+      font-weight: 800;
       margin: 0;
-      color: var(--lavender);
-      text-shadow: none;
+      letter-spacing: -0.025em;
     }
 
-    .content {
-      max-width: 650px;
-      margin: 70px auto;
-      background: rgba(30, 30, 46, 0.65);
-      backdrop-filter: blur(12px);
-      padding: 40px;
-      border-radius: 18px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.45);
-      border: 1px solid var(--surface0);
+    nav h1 span {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .header-info {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header-info h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 99px;
+      margin: 0 auto 30px;
+    }
+
+    .setlist-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
     .setlist-item {
-      font-size: 22px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--surface1);
-      color: var(--text);
-      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      font-size: 1.15rem;
+      padding: 16px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .setlist-item:last-child {
+      border-bottom: none;
     }
 
     .setlist-item:hover {
-      color: var(--mauve);
-      transform: translateX(5px);
+      background: rgba(90, 162, 220, 0.05);
+      color: var(--text);
+      padding-left: 20px;
+    }
+
+    /* Nummer styling */
+    .num {
+      color: var(--primary);
+      font-weight: 700;
+      font-family: monospace;
+      margin-right: 20px;
+      width: 30px;
     }
 
     .break {
       text-align: center;
-      font-size: 24px;
-      margin: 35px 0;
-      padding: 14px 0;
-      font-weight: bold;
-      color: var(--peach);
-      border-top: 2px solid var(--surface2);
-      border-bottom: 2px solid var(--surface2);
-      text-shadow: 0 0 10px rgba(250, 179, 135, 0.5);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin: 40px 0;
+      padding: 15px;
+      color: var(--primary);
+      background: rgba(90, 162, 220, 0.1);
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px dashed rgba(90, 162, 220, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .header-info h2 { font-size: 1.8rem; }
+      .setlist-card { padding: 15px; }
+      .setlist-item { font-size: 1rem; }
     }
   </style>
 </head>
@@ -110,30 +151,38 @@
     <h1>Setlist</h1>
   </nav>
 
-  <div class="content">
-    <div class="setlist-item">1. Song Title 1</div>
-    <div class="setlist-item">2. Song Title 2</div>
-    <div class="setlist-item">3. Song Title 3</div>
-    <div class="setlist-item">4. Song Title 4</div>
-    <div class="setlist-item">5. Song Title 5</div>
-    <div class="setlist-item">6. Song Title 6</div>
-    <div class="setlist-item">7. Song Title 7</div>
-    <div class="setlist-item">8. Song Title 8</div>
-    <div class="setlist-item">9. Song Title 9</div>
-    <div class="setlist-item">10. Song Title 10</div>
+  <div class="container">
+    <div class="header-info">
+      <h2>Setlist</h2>
+      <div class="divider"></div>
+    </div>
 
-    <div class="break">— Break —</div>
+    <div class="setlist-card">
+      <div class="setlist-item"><span class="num">01</span> APT</div>
+      <div class="setlist-item"><span class="num">02</span> In the end</div>
+      <div class="setlist-item"><span class="num">03</span> Freezing cold</div>
+      <div class="setlist-item"><span class="num">04</span> Girl on fire</div>
+      <div class="setlist-item"><span class="num">05</span> Highway Star</div>
+      <div class="setlist-item"><span class="num">06</span> Where's my husband</div>
+      <div class="setlist-item"><span class="num">07</span> Take me out</div>
+      <div class="setlist-item"><span class="num">08</span> Moves like jagger</div>
+      <div class="setlist-item"><span class="num">09</span> Back to black</div>
+      <div class="setlist-item"><span class="num">10</span> Stil in mij</div>
 
-    <div class="setlist-item">11. Song Title 11</div>
-    <div class="setlist-item">12. Song Title 12</div>
-    <div class="setlist-item">13. Song Title 13</div>
-    <div class="setlist-item">14. Song Title 14</div>
-    <div class="setlist-item">15. Song Title 15</div>
-    <div class="setlist-item">16. Song Title 16</div>
-    <div class="setlist-item">17. Song Title 17</div>
-    <div class="setlist-item">18. Song Title 18</div>
-    <div class="setlist-item">19. Song Title 19</div>
-    <div class="setlist-item">20. Song Title 20</div>
+      <div class="break">Pauze</div>
+
+      <div class="setlist-item"><span class="num">11</span> Nobody's wife</div>
+      <div class="setlist-item"><span class="num">12</span> Piano man</div>
+      <div class="setlist-item"><span class="num">13</span> Because the night</div>
+      <div class="setlist-item"><span class="num">14</span> I see red</div>
+      <div class="setlist-item"><span class="num">15</span> Linger</div>
+      <div class="setlist-item"><span class="num">16</span> Trouble</div>
+      <div class="setlist-item"><span class="num">17</span> Cosmic girl</div>
+      <div class="setlist-item"><span class="num">18</span> Music for the soul/Streetlight</div>
+      <div class="setlist-item"><span class="num">19</span> Sonne</div>
+      <div class="setlist-item"><span class="num">20</span> Layla</div>
+      <div class="setlist-item"><span class="num">21</span> Alles is liefde</div>
+    </div>
   </div>
 </body>
 </html>
