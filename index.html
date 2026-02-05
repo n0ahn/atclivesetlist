@@ -2,187 +2,213 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <title>ATC Live Setlist</title>
   <style>
-    /* RoosterPunt Kleurenpalet */
+    * { box-sizing: border-box; }
+
     :root {
       --bg: #0F101A;
-      --dark-bg: #090A0F;
+      --card-bg: rgba(9, 10, 15, 0.9);
       --primary: #5AA2DC;
       --text: #ffffff;
       --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.05);
-      --card-bg: rgba(9, 10, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      /* Animatie snelheid */
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background-color: var(--bg);
-      /* Subtiele gradient achtergrond zoals op de site */
       background-image: 
-        radial-gradient(circle at 50% -20%, rgba(90, 162, 220, 0.15), transparent),
-        radial-gradient(circle at 0% 100%, rgba(90, 162, 220, 0.05), transparent);
+        radial-gradient(circle at 80% 10%, rgba(90, 162, 220, 0.1), transparent),
+        radial-gradient(circle at 10% 90%, rgba(90, 162, 220, 0.05), transparent);
       background-attachment: fixed;
       color: var(--text);
-      line-height: 1.5;
+      overflow-x: hidden;
     }
 
     nav {
       width: 100%;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 2rem;
-      background: rgba(15, 16, 26, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(15, 16, 26, 0.95);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-sizing: border-box;
     }
 
-    nav img.logo {
-      height: 40px;
-      margin-right: 15px;
-    }
-
-    nav h1 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin: 0;
-      letter-spacing: -0.025em;
-    }
-
-    nav h1 span {
-      color: var(--primary);
-    }
+    nav h1 { font-size: 1.2rem; margin: 0; font-weight: 800; }
+    nav h1 span { color: var(--primary); }
 
     .container {
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 0 20px;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px 15px 80px 15px;
     }
 
-    .header-info {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .header-info h2 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      background: linear-gradient(to bottom, #fff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .divider {
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      border-radius: 99px;
-      margin: 0 auto 30px;
-    }
+    .header-info { text-align: center; margin-bottom: 30px; }
+    .header-info h2 { font-size: 2rem; margin: 0; color: #fff; }
 
     .setlist-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .setlist-row {
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
     }
 
     .setlist-item {
       display: flex;
       align-items: center;
-      font-size: 1.15rem;
-      padding: 16px 12px;
-      border-bottom: 1px solid var(--border);
+      padding: 20px;
       color: var(--text-muted);
-      transition: all 0.3s ease;
-      border-radius: 12px;
+      cursor: pointer;
+      transition: color var(--transition);
     }
 
-    .setlist-item:last-child {
-      border-bottom: none;
-    }
-
-    .setlist-item:hover {
-      background: rgba(90, 162, 220, 0.05);
-      color: var(--text);
-      padding-left: 20px;
-    }
-
-    /* Nummer styling */
     .num {
       color: var(--primary);
       font-weight: 700;
       font-family: monospace;
-      margin-right: 20px;
-      width: 30px;
+      width: 40px;
+      font-size: 1.1rem;
+      transition: transform var(--transition);
+    }
+
+    /* Details Animatie */
+    .details {
+      display: grid;
+      grid-template-rows: 0fr; /* De 'clean' manier om te animeren naar de juiste hoogte */
+      transition: grid-template-rows var(--transition), opacity var(--transition);
+      opacity: 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .details-inner {
+      overflow: hidden;
+    }
+
+    .details-content {
+      padding: 20px 20px 20px 60px;
+    }
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 8px 10px;
+      font-size: 0.95rem;
+    }
+
+    .role { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+    .name { color: #fff; font-weight: 500; }
+    .name.highlight { color: var(--primary); }
+
+    /* Actieve status */
+    .setlist-row.active {
+      background: rgba(90, 162, 220, 0.08);
+    }
+
+    .setlist-row.active .setlist-item {
+      color: #fff;
+    }
+
+    .setlist-row.active .num {
+      transform: scale(1.1);
+    }
+
+    .setlist-row.active .details {
+      grid-template-rows: 1fr; /* Vouwt uit naar exact de benodigde hoogte */
+      opacity: 1;
     }
 
     .break {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      margin: 40px 0;
-      padding: 15px;
+      letter-spacing: 0.2em;
+      margin: 25px 0;
+      padding: 12px;
       color: var(--primary);
-      background: rgba(90, 162, 220, 0.1);
-      border-radius: 12px;
-      font-weight: 800;
       border: 1px dashed rgba(90, 162, 220, 0.3);
-    }
-
-    @media (max-width: 600px) {
-      .header-info h2 { font-size: 1.8rem; }
-      .setlist-card { padding: 15px; }
-      .setlist-item { font-size: 1rem; }
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <img src="logo.png" alt="Logo" class="logo" />
-  </nav>
+
+  <nav><h1>ATC <span>LIVE</span></h1></nav>
 
   <div class="container">
     <div class="header-info">
       <h2>Setlist</h2>
-      <div class="divider"></div>
+      <div style="height: 4px; width: 50px; background: var(--primary); margin: 10px auto; border-radius: 2px;"></div>
     </div>
-
-    <div class="setlist-card">
-      <div class="setlist-item"><span class="num">01</span> APT</div>
-      <div class="setlist-item"><span class="num">02</span> In the end</div>
-      <div class="setlist-item"><span class="num">03</span> Freezing cold</div>
-      <div class="setlist-item"><span class="num">04</span> Girl on fire</div>
-      <div class="setlist-item"><span class="num">05</span> Highway Star</div>
-      <div class="setlist-item"><span class="num">06</span> Where's my husband</div>
-      <div class="setlist-item"><span class="num">07</span> Take me out</div>
-      <div class="setlist-item"><span class="num">08</span> Moves like jagger</div>
-      <div class="setlist-item"><span class="num">09</span> Back to black</div>
-      <div class="setlist-item"><span class="num">10</span> Stil in mij</div>
-
-      <div class="break">Pauze</div>
-
-      <div class="setlist-item"><span class="num">11</span> Nobody's wife</div>
-      <div class="setlist-item"><span class="num">12</span> Piano man</div>
-      <div class="setlist-item"><span class="num">13</span> Because the night</div>
-      <div class="setlist-item"><span class="num">14</span> I see red</div>
-      <div class="setlist-item"><span class="num">15</span> Linger</div>
-      <div class="setlist-item"><span class="num">16</span> Trouble</div>
-      <div class="setlist-item"><span class="num">17</span> Cosmic girl</div>
-      <div class="setlist-item"><span class="num">18</span> Music for the soul/Streetlight</div>
-      <div class="setlist-item"><span class="num">19</span> Sonne</div>
-      <div class="setlist-item"><span class="num">20</span> Layla</div>
-      <div class="setlist-item"><span class="num">21</span> Alles is liefde</div>
-    </div>
+    <div class="setlist-card" id="setlist-container"></div>
   </div>
+
+  <script src="data.js"></script>
+  <script>
+    const container = document.getElementById('setlist-container');
+
+    function renderSetlist() {
+      if (typeof setlistData === 'undefined') return;
+
+      let html = '';
+      setlistData.forEach(item => {
+        if (item.type === 'break') {
+          html += `<div class="break">${item.text}</div>`;
+        } else {
+          let detailsHtml = '';
+          item.details.forEach(d => {
+            detailsHtml += `
+              <div class="role">${d.role}</div>
+              <div class="name ${d.highlight ? 'highlight' : ''}">${d.name}</div>`;
+          });
+
+          html += `
+            <div class="setlist-row">
+              <div class="setlist-item" onclick="toggleRow(this)">
+                <span class="num">${item.id}</span>
+                <span style="flex-grow:1">${item.title}</span>
+              </div>
+              <div class="details">
+                <div class="details-inner">
+                  <div class="details-content lineup-grid">${detailsHtml}</div>
+                </div>
+              </div>
+            </div>`;
+        }
+      });
+      container.innerHTML = html;
+    }
+
+    function toggleRow(element) {
+      const row = element.parentElement;
+      const isActive = row.classList.contains('active');
+      
+      // Sluit anderen voor rustiger beeld (optioneel)
+      document.querySelectorAll('.setlist-row').forEach(r => r.classList.remove('active'));
+      
+      if (!isActive) {
+        row.classList.add('active');
+      }
+    }
+
+    renderSetlist();
+  </script>
 </body>
 </html>
