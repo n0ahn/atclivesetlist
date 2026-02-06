@@ -86,7 +86,7 @@ const setlistData = [
     id: "08",
     title: "Moves Like Jagger",
     details: [
-      { role: "Vocal 1", name: "Mea Nazier", highlight: true },
+      { role: "Vocal 1", name: "Mea Naezer", highlight: true },
       { role: "Vocal 2", name: "Eva Fabriek", highlight: true },
       { role: "Vocal 3", name: "Marleen Langevoort", highlight: true },
       { role: "Gitaar 1", name: "Lorena Udo" },
@@ -228,7 +228,8 @@ const setlistData = [
       { role: "Gitaar 1", name: "Luuk Piersma" },
       { role: "Gitaar 2", name: "Lorena Udo" },
       { role: "Bas", name: "Eva Fabriek" },
-      { role: "Drums", name: "Dante Delfgaauw" }
+      { role: "Drums", name: "Dante Delfgaauw" },
+      { role: "Synth", name: "Jessey Out" }
     ]
   },
   {
