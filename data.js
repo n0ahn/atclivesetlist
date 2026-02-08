@@ -4,15 +4,15 @@ const setlistData = [
     id: "01",
     title: "A.P.T. (Docenten)",
     details: [
-      { role: "Vocal 1", name: "Charlotte Meijlemans", highlight: true },
-      { role: "Vocal 2", name: "Julian Tiggelhoven", highlight: true },
+      { role: "Vocal 1", name: "Charlotte Meylemans", highlight: true },
+      { role: "Vocal 2", name: "Julian Tiggeloven", highlight: true },
       { role: "Gitaar 1", name: "Youri Nijboer" },
       { role: "Gitaar 2", name: "Bas Aghina" },
       { role: "Bas", name: "Sander Slot" },
       { role: "Drums", name: "Herman Roozenburg" },
       { role: "Keys", name: "Theo Duurland" },
       { role: "Alt Sax", name: "Evie den Boer" },
-      { role: "Tenor Sax", name: "Bo van der Geest" },
+      { role: "Tenor Sax", name: "Be van der Geest" },
       { role: "Bariton Sax", name: "Eline Renskers" }
     ]
   },
@@ -32,7 +32,7 @@ const setlistData = [
     title: "Freezing Cold",
     details: [
       { role: "Piano", name: "Louise Wage" },
-      { role: "Bas", name: "Tristan Verschoor" },
+      { role: "Bas", name: "Tristan Verschoof" },
       { role: "Drums", name: "Daniel Schol" },
       { role: "Synth", name: "Evie den Boer" }
     ]
@@ -56,7 +56,7 @@ const setlistData = [
       { role: "Vocal 2", name: "Wijnand Ubbens", highlight: true },
       { role: "Gitaar 1", name: "Wijnand Ubbens" },
       { role: "Gitaar 2", name: "Jayden Kappen" },
-      { role: "Bas", name: "Merlijn Vantoor" },
+      { role: "Bas", name: "Merlijn Vanthoor" },
       { role: "Drums", name: "Dante Delfgaauw" }
     ]
   },
@@ -89,8 +89,8 @@ const setlistData = [
       { role: "Vocal 1", name: "Mea Naezer", highlight: true },
       { role: "Vocal 2", name: "Eva Fabriek", highlight: true },
       { role: "Vocal 3", name: "Marleen Langevoort", highlight: true },
-      { role: "Gitaar 1", name: "Lorena Udo" },
-      { role: "Bas", name: "Luuk Piersma" },
+      { role: "Gitaar 1", name: "Luuk Piersma" },
+      { role: "Bas", name: "Lorena Udo" },
       { role: "Drums", name: "Dante Delfgaauw" },
       { role: "Synth", name: "Jessey Out" }
     ]
@@ -105,19 +105,21 @@ const setlistData = [
       { role: "Gitaar 2", name: "Josh Maytham" },
       { role: "Bas", name: "Gijs Janssen" },
       { role: "Drums", name: "Dante Delfgaauw" },
-      { role: "Synth", name: "Evie de Boer" }
+      { role: "Synth", name: "Evie den Boer" }
     ]
   },
   {
     id: "10",
     title: "Where is my husband",
     details: [
-      { role: "Vocal 1", name: "Lola Demoelt", highlight: true },
+      { role: "Vocal 1", name: "Lola Demoed", highlight: true },
+      { role: "Vocal 2", name: "Sophie Delanghe", highlight: true },
+      { role: "Vocal 3", name: "Eva Fabriek", highlight: true },
       { role: "Gitaar 1", name: "Luuk Piersma" },
-      { role: "Bas", name: "Joost Essenberg" },
+      { role: "Bas", name: "Joost van Essenberg" },
       { role: "Drums", name: "Daniel Schol" },
       { role: "Synth", name: "Jessey Out" },
-      { role: "Alt Sax", name: "Evie de Boer" },
+      { role: "Alt Sax", name: "Evie den Boer" },
       { role: "Bariton Sax", name: "Eline Renskers" },
       { role: "Trompet", name: "Martijn Zijlmans" },
       { role: "Trombone", name: "Tomas Kenbeek" }
@@ -134,7 +136,7 @@ const setlistData = [
       { role: "Vocal 1", name: "Sophie Delanghe", highlight: true },
       { role: "Akk. Gitaar", name: "Noah Niemeijer" },
       { role: "Gitaar", name: "Luuk Piersma" },
-      { role: "Bas", name: "Joost Essenberg" },
+      { role: "Bas", name: "Joost van Essenberg" },
       { role: "Drums", name: "Daniel Schol" }
     ]
   },
@@ -181,6 +183,7 @@ const setlistData = [
       { role: "Gitaar 1", name: "Noah Niemeijer" },
       { role: "Bas", name: "Femke Pap" },
       { role: "Drums", name: "Daniel Schol" },
+      { role: "Pianp", name: "Floris Tabak" },
       { role: "Viool", name: "Mike Kruijer" },
     ]
   },
@@ -190,7 +193,7 @@ const setlistData = [
     details: [
       { role: "Vocal 1", name: "Lisanne Koerhuis", highlight: true },
       { role: "Vocal 2", name: "Sien van der Does", highlight: true },
-      { role: "Akk. Gitaar", name: "Lisanne koerhuis" },
+      { role: "Akk. Gitaar", name: "Lisanne Koerhuis" },
       { role: "Gitaar", name: "Chris Boedijn" },
       { role: "Bas", name: "Sofie Bruggink" },
       { role: "Drums", name: "Daniel Schol" },
@@ -224,7 +227,7 @@ const setlistData = [
     details: [
       { role: "Vocal 1", name: "Floris Tabak", highlight: true },
       { role: "Vocal 2", name: "Eva Fabriek", highlight: true },
-      { role: "Vocal 3", name: "Sophie Delange", highlight: true },
+      { role: "Vocal 3", name: "Sophie Delanghe", highlight: true },
       { role: "Gitaar 1", name: "Luuk Piersma" },
       { role: "Gitaar 2", name: "Lorena Udo" },
       { role: "Bas", name: "Eva Fabriek" },
@@ -256,7 +259,7 @@ const setlistData = [
       { role: "Vocal 3", name: "Jip Venderbosch", highlight: true },
       { role: "Gitaar 1", name: "Noah Niemeijer" },
       { role: "Gitaar 2", name: "Tristan Verschoof" },
-      { role: "Bas", name: "Joost Essenberg" },
+      { role: "Bas", name: "Joost van Essenberg" },
       { role: "Drums", name: "Auke Zijlstra/Daniel Schol" },
       { role: "Piano", name: "Floris Tabak" }
     ]
