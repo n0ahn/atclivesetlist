@@ -146,7 +146,7 @@ const setlistData = [
     details: [
       { role: "Vocal 1", name: "Jillian Hartman", highlight: true },
       { role: "Bas", name: "Tristan Verschoof" },
-      { role: "Drums", name: "Daniel Schol" },
+      { role: "Drums", name: "Evie den Boer" },
       { role: "Piano", name: "Floris Tabak" },
       { role: "Mondharm.", name: "Jillian Hartman" }
     ]
@@ -245,7 +245,7 @@ const setlistData = [
       { role: "Gitaar 1", name: "Isaac van Dorp" },
       { role: "Gitaar 2", name: "Aimee Vendelbos" },
       { role: "Gitaar 3", name: "Lisanne Koerhuis" },
-      { role: "Bas", name: "Tristan Verschoor" },
+      { role: "Bas", name: "Tristan Verschoof" },
       { role: "Drums", name: "Daniel Schol" }
     ]
   },
